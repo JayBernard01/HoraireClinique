@@ -214,116 +214,114 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                                  child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                Align(
+                                  alignment: Alignment(0, 0),
+                                  child: Container(
+                                    width: 230,
+                                    height: 44,
+                                    child: Stack(
                                       children: [
-                                        Container(
-                                          width: 100,
-                                          height: 38,
-                                          child: Stack(
-                                            children: [
-                                              Align(
-                                                alignment:
-                                                    Alignment(-0.7, -0.01),
-                                                child: Container(
-                                                  width: 18,
-                                                  height: 18,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
+                                        Align(
+                                          alignment: Alignment(0, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsets.fromLTRB(0, 1, 0, 0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                final user =
+                                                    await signInWithGoogle(
+                                                        context);
+                                                if (user == null) {
+                                                  return;
+                                                }
+                                                await Navigator
+                                                    .pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        NavBarPage(
+                                                            initialPage:
+                                                                'HomePage'),
                                                   ),
-                                                  child: Image.network(
-                                                    'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
-                                                    fit: BoxFit.contain,
-                                                  ),
-                                                ),
+                                                  (r) => false,
+                                                );
+                                              },
+                                              text: 'Sign in with Google',
+                                              icon: Icon(
+                                                Icons.add,
+                                                color: Colors.transparent,
+                                                size: 20,
                                               ),
-                                              Align(
-                                                alignment: Alignment(0, 0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    final user =
-                                                        await signInWithGoogle(
-                                                            context);
-                                                    if (user == null) {
-                                                      return;
-                                                    }
-                                                    await Navigator
-                                                        .pushAndRemoveUntil(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            NavBarPage(
-                                                                initialPage:
-                                                                    'HomePage'),
-                                                      ),
-                                                      (r) => false,
-                                                    );
-                                                  },
-                                                  text: 'Sign in',
-                                                  icon: Icon(
-                                                    Icons.add,
-                                                    color: Colors.transparent,
-                                                    size: 20,
-                                                  ),
-                                                  options: FFButtonOptions(
-                                                    width: 100,
-                                                    height: 38,
-                                                    color: Colors.transparent,
-                                                    textStyle:
-                                                        GoogleFonts.getFont(
-                                                      'Open Sans',
-                                                      color: Color(0xFF616161),
-                                                      fontSize: 14,
-                                                    ),
-                                                    borderSide: BorderSide(
-                                                      color: Color(0xFFAAAAAA),
-                                                      width: 0.5,
-                                                    ),
-                                                    borderRadius: 0,
-                                                  ),
+                                              options: FFButtonOptions(
+                                                width: 230,
+                                                height: 44,
+                                                color: Colors.white,
+                                                textStyle: GoogleFonts.getFont(
+                                                  'Roboto',
+                                                  color: Color(0xFF606060),
+                                                  fontSize: 17,
                                                 ),
-                                              )
-                                            ],
+                                                elevation: 4,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 0,
+                                                ),
+                                                borderRadius: 12,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment(-0.83, 0),
+                                          child: Container(
+                                            width: 22,
+                                            height: 22,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
+                                              fit: BoxFit.contain,
+                                            ),
                                           ),
                                         )
                                       ],
                                     ),
                                   ),
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                      child: Text(
-                                        'Don\'t have an account?',
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: Color(0xFFADADAD),
-                                          fontSize: 14,
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                        child: Text(
+                                          'Don\'t have an account?',
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFFADADAD),
+                                            fontSize: 14,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Text(
-                                      'Sign Up',
-                                      style: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
+                                      Text(
+                                        'Sign Up',
+                                        style: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          fontSize: 14,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 )
                               ],
                             )
