@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:horaire_clinique/home_page/home_page_widget.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'home_page/home_page_widget.dart';
 import 'request_page/request_page_widget.dart';
 import 'calendar_page/calendar_page_widget.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+void main() {
   runApp(MyApp());
 }
 
@@ -64,7 +61,6 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.text_snippet_outlined,
-              color: Color(0xFF9E9E9E),
               size: 24,
             ),
             label: 'Request',
@@ -72,7 +68,6 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.calendar_today,
-              color: Color(0xFF9E9E9E),
               size: 24,
             ),
             label: 'Calendar',
