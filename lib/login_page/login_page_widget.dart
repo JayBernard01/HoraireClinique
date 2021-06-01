@@ -13,6 +13,7 @@ class LoginPageWidget extends StatefulWidget {
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
+  TextEditingController confirmPasswordTextController;
   TextEditingController emailTextController;
   TextEditingController passwordTextController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -20,6 +21,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   @override
   void initState() {
     super.initState();
+    confirmPasswordTextController = TextEditingController();
     emailTextController = TextEditingController();
     passwordTextController = TextEditingController();
   }
@@ -163,6 +165,61 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                   ),
                                   Padding(
+                                    padding: EdgeInsets.fromLTRB(4, 0, 4, 20),
+                                    child: Container(
+                                      width: 300,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFE0E0E0),
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                        child: TextFormField(
+                                          controller:
+                                              confirmPasswordTextController,
+                                          obscureText: true,
+                                          decoration: InputDecoration(
+                                            hintText: 'Confirm Password',
+                                            hintStyle: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF455A64),
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(4.0),
+                                                topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(4.0),
+                                                topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                          ),
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF455A64),
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
                                     padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -202,11 +259,94 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    'Forgot password?',
-                                    style: GoogleFonts.getFont(
-                                      'Open Sans',
-                                      fontSize: 14,
+                                  InkWell(
+                                    onTap: () async {
+                                      if (emailTextController.text.isEmpty) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Email required!',
+                                            ),
+                                          ),
+                                        );
+                                        return;
+                                      }
+                                      await resetPassword(
+                                        email: emailTextController.text,
+                                        context: context,
+                                      );
+                                    },
+                                    child: Text(
+                                      'Forgot password? Resset here',
+                                      style: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              if (passwordTextController.text !=
+                                                  confirmPasswordTextController
+                                                      .text) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      "Passwords don't match!",
+                                                    ),
+                                                  ),
+                                                );
+                                                return;
+                                              }
+
+                                              final user =
+                                                  await createAccountWithEmail(
+                                                context,
+                                                emailTextController.text,
+                                                passwordTextController.text,
+                                              );
+                                              if (user == null) {
+                                                return;
+                                              }
+
+                                              await Navigator
+                                                  .pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      NavBarPage(
+                                                          initialPage:
+                                                              'HomePage'),
+                                                ),
+                                                (r) => false,
+                                              );
+                                            },
+                                            child: Text(
+                                              'Don\'t have an account? Sign Up',
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Colors.black,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   )
                                 ],
@@ -225,7 +365,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     child: Stack(
                                       children: [
                                         Align(
-                                          alignment: Alignment(0, 0),
+                                          alignment: Alignment(0, 6.67),
                                           child: Padding(
                                             padding:
                                                 EdgeInsets.fromLTRB(0, 1, 0, 0),
@@ -291,36 +431,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         )
                                       ],
                                     ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                        child: Text(
-                                          'Don\'t have an account?',
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFFADADAD),
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'Sign Up',
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          fontSize: 14,
-                                        ),
-                                      )
-                                    ],
                                   ),
                                 )
                               ],
