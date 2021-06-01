@@ -21,6 +21,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color(0xFFE6E6E6),
+        iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         actions: [],
         centerTitle: true,
