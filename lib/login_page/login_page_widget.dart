@@ -57,20 +57,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         padding: EdgeInsets.fromLTRB(0, 60, 0, 60),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Align(
-                              alignment: Alignment(0, -0.65),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(0, 4, 0, 0),
-                                child: Image.network(
-                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/flutterflow_assets/ff_logo.png',
-                                  width: 50,
-                                  height: 50,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
