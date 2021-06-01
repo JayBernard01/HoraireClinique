@@ -31,35 +31,26 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
       body: SafeArea(
         child: Stack(
           children: [
-            Align(
-              alignment: Alignment(0, -1),
-              child: Image.network(
-                'https://picsum.photos/seed/483/300',
-                width: double.infinity,
-                height: 250,
-                fit: BoxFit.cover,
-              ),
-            ),
             Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, 230, 0, 0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFEEEEEE),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(0, 60, 0, 60),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
+                  child: Container(
+                    width: double.infinity,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEEEEEE),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(0, 60, 0, 60),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                            child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
@@ -219,123 +210,121 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 )
                               ],
                             ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                                  child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 100,
-                                          height: 38,
-                                          child: Stack(
-                                            children: [
-                                              Align(
-                                                alignment:
-                                                    Alignment(-0.7, -0.01),
-                                                child: Container(
-                                                  width: 18,
-                                                  height: 18,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                  child: Image.network(
-                                                    'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
-                                                    fit: BoxFit.contain,
-                                                  ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 100,
+                                        height: 38,
+                                        child: Stack(
+                                          children: [
+                                            Align(
+                                              alignment: Alignment(-0.7, -0.01),
+                                              child: Container(
+                                                width: 18,
+                                                height: 18,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.network(
+                                                  'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
-                                              Align(
-                                                alignment: Alignment(0, 0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    final user =
-                                                        await signInWithGoogle(
-                                                            context);
-                                                    if (user == null) {
-                                                      return;
-                                                    }
-                                                    await Navigator
-                                                        .pushAndRemoveUntil(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            NavBarPage(
-                                                                initialPage:
-                                                                    'HomePage'),
-                                                      ),
-                                                      (r) => false,
-                                                    );
-                                                  },
-                                                  text: 'Sign in',
-                                                  icon: Icon(
-                                                    Icons.add,
-                                                    color: Colors.transparent,
-                                                    size: 20,
-                                                  ),
-                                                  options: FFButtonOptions(
-                                                    width: 100,
-                                                    height: 38,
-                                                    color: Colors.transparent,
-                                                    textStyle:
-                                                        GoogleFonts.getFont(
-                                                      'Open Sans',
-                                                      color: Color(0xFF616161),
-                                                      fontSize: 14,
+                                            ),
+                                            Align(
+                                              alignment: Alignment(0, 0),
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  final user =
+                                                      await signInWithGoogle(
+                                                          context);
+                                                  if (user == null) {
+                                                    return;
+                                                  }
+                                                  await Navigator
+                                                      .pushAndRemoveUntil(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          NavBarPage(
+                                                              initialPage:
+                                                                  'HomePage'),
                                                     ),
-                                                    borderSide: BorderSide(
-                                                      color: Color(0xFFAAAAAA),
-                                                      width: 0.5,
-                                                    ),
-                                                    borderRadius: 0,
-                                                  ),
+                                                    (r) => false,
+                                                  );
+                                                },
+                                                text: 'Sign in',
+                                                icon: Icon(
+                                                  Icons.add,
+                                                  color: Colors.transparent,
+                                                  size: 20,
                                                 ),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                                options: FFButtonOptions(
+                                                  width: 100,
+                                                  height: 38,
+                                                  color: Colors.transparent,
+                                                  textStyle:
+                                                      GoogleFonts.getFont(
+                                                    'Open Sans',
+                                                    color: Color(0xFF616161),
+                                                    fontSize: 14,
+                                                  ),
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFAAAAAA),
+                                                    width: 0.5,
+                                                  ),
+                                                  borderRadius: 0,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                      child: Text(
-                                        'Don\'t have an account?',
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: Color(0xFFADADAD),
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      'Sign Up',
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                    child: Text(
+                                      'Don\'t have an account?',
                                       style: GoogleFonts.getFont(
                                         'Open Sans',
+                                        color: Color(0xFFADADAD),
                                         fontSize: 14,
                                       ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
-                        ),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Sign Up',
+                                    style: GoogleFonts.getFont(
+                                      'Open Sans',
+                                      fontSize: 14,
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          )
+                        ],
                       ),
                     ),
                   ),

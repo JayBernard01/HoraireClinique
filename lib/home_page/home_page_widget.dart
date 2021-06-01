@@ -1,7 +1,5 @@
-import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../help_page/help_page_widget.dart';
-import '../login_page/login_page_widget.dart';
 import '../profil_page/profil_page_widget.dart';
 import '../settings_page/settings_page_widget.dart';
 import 'package:flutter/material.dart';
@@ -171,35 +169,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         dense: false,
                       ),
                     ),
-                    InkWell(
-                      onTap: () async {
-                        await signOut();
-                        await Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginPageWidget(),
-                          ),
-                          (r) => false,
-                        );
-                      },
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.login,
-                        ),
-                        title: Text(
-                          'Disconnect',
-                          style: FlutterFlowTheme.title3.override(
-                            fontFamily: 'Poppins',
-                          ),
-                        ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Color(0xFF303030),
-                          size: 20,
-                        ),
-                        tileColor: Color(0xFFF5F5F5),
-                        dense: false,
+                    ListTile(
+                      leading: Icon(
+                        Icons.login,
                       ),
+                      title: Text(
+                        'Disconnect',
+                        style: FlutterFlowTheme.title3.override(
+                          fontFamily: 'Poppins',
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Color(0xFF303030),
+                        size: 20,
+                      ),
+                      tileColor: Color(0xFFF5F5F5),
+                      dense: false,
                     )
                   ],
                 ),
