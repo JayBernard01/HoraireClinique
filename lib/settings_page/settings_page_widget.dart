@@ -18,6 +18,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color(0xFFE6E6E6),
+        iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: true,
         title: Text(
           'Settings',
