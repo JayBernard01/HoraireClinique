@@ -236,62 +236,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 100,
-                                        height: 38,
-                                        child: Stack(
-                                          children: [
-                                            Align(
-                                              alignment: Alignment(-0.7, -0.01),
-                                              child: Container(
-                                                width: 18,
-                                                height: 18,
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Image.network(
-                                                  'https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512',
-                                                ),
-                                              ),
-                                            ),
-                                            FFButtonWidget(
-                                              onPressed: () {
-                                                print('Button pressed ...');
-                                              },
-                                              text: 'Sign in',
-                                              icon: Icon(
-                                                Icons.add,
-                                                color: Colors.transparent,
-                                                size: 20,
-                                              ),
-                                              options: FFButtonOptions(
-                                                width: 100,
-                                                height: 38,
-                                                color: Colors.transparent,
-                                                textStyle: GoogleFonts.getFont(
-                                                  'Open Sans',
-                                                  color: Color(0xFF616161),
-                                                  fontSize: 14,
-                                                ),
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFFAAAAAA),
-                                                  width: 0.5,
-                                                ),
-                                                borderRadius: 0,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                        child: Container(
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
                                           width: 100,
                                           height: 38,
                                           child: Stack(
@@ -312,54 +266,57 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                   ),
                                                 ),
                                               ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  final user =
-                                                      await signInWithGoogle(
-                                                          context);
-                                                  if (user == null) {
-                                                    return;
-                                                  }
-                                                  await Navigator
-                                                      .pushAndRemoveUntil(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          NavBarPage(
-                                                              initialPage:
-                                                                  'HomePage'),
+                                              Align(
+                                                alignment: Alignment(0, 0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    final user =
+                                                        await signInWithGoogle(
+                                                            context);
+                                                    if (user == null) {
+                                                      return;
+                                                    }
+                                                    await Navigator
+                                                        .pushAndRemoveUntil(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            NavBarPage(
+                                                                initialPage:
+                                                                    'HomePage'),
+                                                      ),
+                                                      (r) => false,
+                                                    );
+                                                  },
+                                                  text: 'Sign in',
+                                                  icon: Icon(
+                                                    Icons.add,
+                                                    color: Colors.transparent,
+                                                    size: 20,
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    width: 100,
+                                                    height: 38,
+                                                    color: Colors.transparent,
+                                                    textStyle:
+                                                        GoogleFonts.getFont(
+                                                      'Open Sans',
+                                                      color: Color(0xFF616161),
+                                                      fontSize: 14,
                                                     ),
-                                                    (r) => false,
-                                                  );
-                                                },
-                                                text: 'Sign in',
-                                                icon: Icon(
-                                                  Icons.add,
-                                                  color: Colors.transparent,
-                                                  size: 20,
-                                                ),
-                                                options: FFButtonOptions(
-                                                  width: 100,
-                                                  height: 38,
-                                                  color: Colors.transparent,
-                                                  textStyle:
-                                                      GoogleFonts.getFont(
-                                                    'Open Sans',
-                                                    color: Color(0xFF616161),
-                                                    fontSize: 14,
+                                                    borderSide: BorderSide(
+                                                      color: Color(0xFFAAAAAA),
+                                                      width: 0.5,
+                                                    ),
+                                                    borderRadius: 0,
                                                   ),
-                                                  borderSide: BorderSide(
-                                                    color: Color(0xFFAAAAAA),
-                                                    width: 0.5,
-                                                  ),
-                                                  borderRadius: 0,
                                                 ),
                                               )
                                             ],
                                           ),
-                                        ),
-                                      )
-                                    ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Row(
