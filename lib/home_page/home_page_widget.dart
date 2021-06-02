@@ -4,6 +4,7 @@ import '../help_page/help_page_widget.dart';
 import '../login_page_copy/login_page_copy_widget.dart';
 import '../profil_page/profil_page_widget.dart';
 import '../settings_page/settings_page_widget.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,30 +61,41 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                           ),
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                              child: Text(
-                                'Hello World',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
+                        Expanded(
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
                             ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                              child: Text(
-                                'Hello World',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Poppins',
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: AutoSizeText(
+                                    'Hello World',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.title1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 15,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            )
-                          ],
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: AutoSizeText(
+                                    'Hello World',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         )
                       ],
                     ),
