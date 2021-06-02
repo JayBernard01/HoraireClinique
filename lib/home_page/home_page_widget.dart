@@ -45,8 +45,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Container(
-                      width: 120,
-                      height: 120,
+                      width: 90,
+                      height: 90,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -56,7 +56,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                       child: AutoSizeText(
                         currentUserDisplayName,
                         textAlign: TextAlign.center,
@@ -66,7 +66,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: AutoSizeText(
                         currentUserEmail,
                         textAlign: TextAlign.center,
