@@ -44,73 +44,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
                   children: [
+                    Container(
+                      width: 120,
+                      height: 120,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.network(
+                        currentUserPhoto,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                      child: AutoSizeText(
+                        currentUserDisplayName,
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.title3.override(
+                          fontFamily: 'Poppins',
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 10, 0, 25),
-                            child: Container(
-                              width: 90,
-                              height: 90,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.network(
-                                currentUserPhoto,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                        child: AutoSizeText(
-                                          currentUserDisplayName,
-                                          textAlign: TextAlign.start,
-                                          style:
-                                              FlutterFlowTheme.title1.override(
-                                            fontFamily: 'Poppins',
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                        child: AutoSizeText(
-                                          currentUserEmail,
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
+                      child: AutoSizeText(
+                        currentUserEmail,
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.subtitle1.override(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                     ),
                     InkWell(
