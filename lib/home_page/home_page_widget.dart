@@ -53,8 +53,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 10, 0, 25),
                             child: Container(
-                              width: 120,
-                              height: 120,
+                              width: 90,
+                              height: 90,
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
@@ -71,32 +71,42 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                               ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                    child: AutoSizeText(
-                                      currentUserDisplayName,
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.title1.override(
-                                        fontFamily: 'Poppins',
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        child: AutoSizeText(
+                                          currentUserDisplayName,
+                                          textAlign: TextAlign.start,
+                                          style:
+                                              FlutterFlowTheme.title1.override(
+                                            fontFamily: 'Poppins',
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                        child: AutoSizeText(
+                                          currentUserEmail,
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                    child: AutoSizeText(
-                                      currentUserEmail,
-                                      textAlign: TextAlign.start,
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                  )
-                                ],
+                                ),
                               ),
                             ),
                           )
