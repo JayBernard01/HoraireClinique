@@ -89,7 +89,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   Padding(
                                     padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                                     child: AutoSizeText(
-                                      currentUserDisplayName,
+                                      currentUserEmail,
                                       textAlign: TextAlign.start,
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
