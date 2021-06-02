@@ -82,7 +82,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.title1.override(
                                         fontFamily: 'Poppins',
-                                        fontSize: 15,
                                       ),
                                     ),
                                   ),
@@ -94,7 +93,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Poppins',
-                                        fontSize: 12,
                                       ),
                                     ),
                                   )
