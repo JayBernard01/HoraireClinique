@@ -1,7 +1,7 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../help_page/help_page_widget.dart';
-import '../login_page/login_page_widget.dart';
+import '../login_page_copy/login_page_copy_widget.dart';
 import '../profil_page/profil_page_widget.dart';
 import '../settings_page/settings_page_widget.dart';
 import 'package:flutter/material.dart';
@@ -177,7 +177,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginPageWidget(),
+                            builder: (context) => LoginPageCopyWidget(),
                           ),
                           (r) => false,
                         );
