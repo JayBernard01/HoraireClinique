@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
@@ -14,16 +15,20 @@ class LoginPageWidget extends StatefulWidget {
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController confirmPasswordTextController;
+  bool passwordVisibility2;
   TextEditingController emailTextController;
   TextEditingController passwordTextController;
+  bool passwordVisibility1;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     confirmPasswordTextController = TextEditingController();
+    passwordVisibility2 = false;
     emailTextController = TextEditingController();
     passwordTextController = TextEditingController();
+    passwordVisibility1 = false;
   }
 
   @override
@@ -80,7 +85,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             ),
                                             enabledBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Colors.transparent,
+                                                color: Color(0x00000000),
                                                 width: 1,
                                               ),
                                               borderRadius:
@@ -91,7 +96,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             ),
                                             focusedBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Colors.transparent,
+                                                color: Color(0x00000000),
                                                 width: 1,
                                               ),
                                               borderRadius:
@@ -124,7 +129,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             EdgeInsets.fromLTRB(20, 0, 20, 0),
                                         child: TextFormField(
                                           controller: passwordTextController,
-                                          obscureText: true,
+                                          obscureText: !passwordVisibility1,
                                           decoration: InputDecoration(
                                             hintText: 'Password',
                                             hintStyle: GoogleFonts.getFont(
@@ -134,7 +139,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             ),
                                             enabledBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Colors.transparent,
+                                                color: Color(0x00000000),
                                                 width: 1,
                                               ),
                                               borderRadius:
@@ -145,13 +150,26 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             ),
                                             focusedBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Colors.transparent,
+                                                color: Color(0x00000000),
                                                 width: 1,
                                               ),
                                               borderRadius:
                                                   const BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                            suffixIcon: InkWell(
+                                              onTap: () => setState(
+                                                () => passwordVisibility1 =
+                                                    !passwordVisibility1,
+                                              ),
+                                              child: Icon(
+                                                passwordVisibility1
+                                                    ? Icons.visibility_outlined
+                                                    : Icons
+                                                        .visibility_off_outlined,
+                                                size: 22,
                                               ),
                                             ),
                                           ),
@@ -179,7 +197,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         child: TextFormField(
                                           controller:
                                               confirmPasswordTextController,
-                                          obscureText: true,
+                                          obscureText: !passwordVisibility2,
                                           decoration: InputDecoration(
                                             hintText: 'Confirm Password',
                                             hintStyle: GoogleFonts.getFont(
@@ -189,7 +207,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             ),
                                             enabledBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Colors.transparent,
+                                                color: Color(0x00000000),
                                                 width: 1,
                                               ),
                                               borderRadius:
@@ -200,13 +218,26 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             ),
                                             focusedBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Colors.transparent,
+                                                color: Color(0x00000000),
                                                 width: 1,
                                               ),
                                               borderRadius:
                                                   const BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                            suffixIcon: InkWell(
+                                              onTap: () => setState(
+                                                () => passwordVisibility2 =
+                                                    !passwordVisibility2,
+                                              ),
+                                              child: Icon(
+                                                passwordVisibility2
+                                                    ? Icons.visibility_outlined
+                                                    : Icons
+                                                        .visibility_off_outlined,
+                                                size: 22,
                                               ),
                                             ),
                                           ),

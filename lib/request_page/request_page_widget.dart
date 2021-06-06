@@ -1,4 +1,6 @@
+import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,6 +18,24 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      body: SafeArea(
+        child: FutureBuilder<dynamic>(
+          future: getJsonPlaceHolderCall(),
+          builder: (context, snapshot) {
+            // Customize what your widget looks like when it's loading.
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
+            final textGetJsonPlaceHolderResponse = snapshot.data;
+            return Text(
+              'Hello World',
+              style: FlutterFlowTheme.bodyText1.override(
+                fontFamily: 'Poppins',
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
