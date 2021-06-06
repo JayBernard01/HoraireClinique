@@ -26,16 +26,15 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
             color: Color(0xFFEEEEEE),
           ),
           child: FutureBuilder<dynamic>(
-            future: getJsonPlaceHolderCall(),
+            future: timeZoneCall(),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
                 return Center(child: CircularProgressIndicator());
               }
-              final textGetJsonPlaceHolderResponse = snapshot.data;
+              final textTimeZoneResponse = snapshot.data;
               return Text(
-                getJsonField(textGetJsonPlaceHolderResponse, r'$.[0].body')
-                    .toString(),
+                getJsonField(textTimeZoneResponse, r'*').toString(),
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                 ),

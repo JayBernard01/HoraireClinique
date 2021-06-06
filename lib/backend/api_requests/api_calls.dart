@@ -40,3 +40,13 @@ Future<dynamic> getJsonPlaceHolderCall() => ApiManager.instance.makeApiCall(
       params: {},
       returnResponse: true,
     );
+
+Future<dynamic> timeZoneCall() => ApiManager.instance.makeApiCall(
+      callName: 'timeZone',
+      apiDomain: 'worldtimeapi.org',
+      apiEndpoint: 'api/timezone/Europe',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnResponse: true,
+    );
