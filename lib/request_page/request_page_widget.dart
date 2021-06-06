@@ -26,7 +26,10 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
             color: Color(0xFFEEEEEE),
           ),
           child: FutureBuilder<dynamic>(
-            future: worldTimeAPICall(),
+            future: worldTimeAPICall(
+              area: 'Europe',
+              location: 'London',
+            ),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
