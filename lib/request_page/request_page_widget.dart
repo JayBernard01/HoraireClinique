@@ -28,7 +28,7 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
             }
             final textGetJsonPlaceHolderResponse = snapshot.data;
             return Text(
-              'Hello World',
+              getJsonField(textGetJsonPlaceHolderResponse, r'[3]').toString(),
               style: FlutterFlowTheme.bodyText1.override(
                 fontFamily: 'Poppins',
               ),
