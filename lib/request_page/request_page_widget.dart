@@ -26,18 +26,16 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
             color: Color(0xFFEEEEEE),
           ),
           child: FutureBuilder<dynamic>(
-            future: worldTimeAPICall(
-              area: 'Europe',
-              location: 'London',
-            ),
+            future: getJsonPlaceHolderCall(),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
                 return Center(child: CircularProgressIndicator());
               }
-              final textWorldTimeAPIResponse = snapshot.data;
+              final textGetJsonPlaceHolderResponse = snapshot.data;
               return Text(
-                getJsonField(textWorldTimeAPIResponse, r'$..*').toString(),
+                getJsonField(textGetJsonPlaceHolderResponse, r'$.[0].body')
+                    .toString(),
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                 ),
