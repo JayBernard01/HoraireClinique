@@ -20,7 +20,10 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
       key: scaffoldKey,
       body: SafeArea(
         child: FutureBuilder<dynamic>(
-          future: worldTimeAPICall(),
+          future: worldTimeAPICall(
+            area: 'Europe',
+            location: 'London',
+          ),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
