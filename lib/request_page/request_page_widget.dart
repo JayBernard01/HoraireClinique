@@ -26,15 +26,15 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
             color: Color(0xFFEEEEEE),
           ),
           child: FutureBuilder<dynamic>(
-            future: timeZoneCall(),
+            future: worldTimeAPICall(),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
                 return Center(child: CircularProgressIndicator());
               }
-              final textTimeZoneResponse = snapshot.data;
+              final textWorldTimeAPIResponse = snapshot.data;
               return Text(
-                getJsonField(textTimeZoneResponse, r'*').toString(),
+                getJsonField(textWorldTimeAPIResponse, r'.datetime').toString(),
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                 ),
