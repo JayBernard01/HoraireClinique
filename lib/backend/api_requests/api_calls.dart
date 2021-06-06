@@ -37,3 +37,20 @@ Future<dynamic> getJsonPlaceHolderCall({
       },
       returnResponse: true,
     );
+
+Future<dynamic> worldTimeAPICall({
+  String area = '',
+  String location = '',
+}) =>
+    ApiManager.instance.makeApiCall(
+      callName: 'WorldTimeAPI',
+      apiDomain: 'worldtimeapi.org',
+      apiEndpoint: 'api/timezone/area/location',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'area': area,
+        'location': location,
+      },
+      returnResponse: true,
+    );

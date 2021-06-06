@@ -20,16 +20,15 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
       key: scaffoldKey,
       body: SafeArea(
         child: FutureBuilder<dynamic>(
-          future: getJsonPlaceHolderCall(),
+          future: worldTimeAPICall(),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
               return Center(child: CircularProgressIndicator());
             }
-            final textGetJsonPlaceHolderResponse = snapshot.data;
+            final textWorldTimeAPIResponse = snapshot.data;
             return Text(
-              getJsonField(textGetJsonPlaceHolderResponse, r'userId')
-                  .toString(),
+              getJsonField(textWorldTimeAPIResponse, r'datetime').toString(),
               style: FlutterFlowTheme.bodyText1.override(
                 fontFamily: 'Poppins',
               ),
