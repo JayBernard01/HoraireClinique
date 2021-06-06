@@ -19,24 +19,31 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       body: SafeArea(
-        child: FutureBuilder<dynamic>(
-          future: worldTimeAPICall(
-            area: 'Europe',
-            location: 'London',
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height * 1,
+          decoration: BoxDecoration(
+            color: Color(0xFFEEEEEE),
           ),
-          builder: (context, snapshot) {
-            // Customize what your widget looks like when it's loading.
-            if (!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
-            }
-            final textWorldTimeAPIResponse = snapshot.data;
-            return Text(
-              getJsonField(textWorldTimeAPIResponse, r'$..*').toString(),
-              style: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Poppins',
-              ),
-            );
-          },
+          child: FutureBuilder<dynamic>(
+            future: worldTimeAPICall(
+              area: 'Europe',
+              location: 'London',
+            ),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              }
+              final textWorldTimeAPIResponse = snapshot.data;
+              return Text(
+                getJsonField(textWorldTimeAPIResponse, r'$..*').toString(),
+                style: FlutterFlowTheme.bodyText1.override(
+                  fontFamily: 'Poppins',
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
