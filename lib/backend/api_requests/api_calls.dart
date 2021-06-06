@@ -17,27 +17,6 @@ Future<dynamic> getEventCall({
       returnResponse: true,
     );
 
-Future<dynamic> getJsonPlaceHolderCall({
-  int userId,
-  int id,
-  String title = '',
-  String body = '',
-}) =>
-    ApiManager.instance.makeApiCall(
-      callName: 'getJsonPlaceHolder',
-      apiDomain: 'jsonplaceholder.typicode.com',
-      apiEndpoint: 'posts',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {
-        'userId': userId,
-        'id': id,
-        'title': title,
-        'body': body,
-      },
-      returnResponse: true,
-    );
-
 Future<dynamic> worldTimeAPICall({
   String area = '',
   String location = '',
@@ -46,6 +25,16 @@ Future<dynamic> worldTimeAPICall({
       callName: 'WorldTimeAPI',
       apiDomain: 'worldtimeapi.org',
       apiEndpoint: 'api/timezone/$area/$location',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnResponse: true,
+    );
+
+Future<dynamic> getJsonPlaceHolderCall() => ApiManager.instance.makeApiCall(
+      callName: 'getJsonPlaceHolder',
+      apiDomain: 'jsonplaceholder.typicode.com',
+      apiEndpoint: 'posts',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
