@@ -45,12 +45,9 @@ Future<dynamic> worldTimeAPICall({
     ApiManager.instance.makeApiCall(
       callName: 'WorldTimeAPI',
       apiDomain: 'worldtimeapi.org',
-      apiEndpoint: 'api/timezone/area/location',
+      apiEndpoint: 'api/timezone/$area/$location',
       callType: ApiCallType.GET,
       headers: {},
-      params: {
-        'area': area,
-        'location': location,
-      },
+      params: {},
       returnResponse: true,
     );
