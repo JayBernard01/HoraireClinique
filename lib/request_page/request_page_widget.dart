@@ -31,7 +31,7 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
             }
             final textWorldTimeAPIResponse = snapshot.data;
             return Text(
-              getJsonField(textWorldTimeAPIResponse, r'.datetime').toString(),
+              getJsonField(textWorldTimeAPIResponse, r'$.datetime').toString(),
               style: FlutterFlowTheme.bodyText1.override(
                 fontFamily: 'Poppins',
               ),
