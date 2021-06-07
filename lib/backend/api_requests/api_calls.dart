@@ -50,3 +50,22 @@ Future<dynamic> timeZoneCall() => ApiManager.instance.makeApiCall(
       params: {},
       returnResponse: true,
     );
+
+Future<dynamic> calendarListListCall({
+  String yourApiKey = '',
+  String yourAccessToken = '',
+}) =>
+    ApiManager.instance.makeApiCall(
+      callName: 'CalendarListList',
+      apiDomain: 'www.googleapis.com',
+      apiEndpoint: 'calendar/v3/users/me/calendarList?key=$yourApiKey',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer [YOUR_ACCESS_TOKEN]',
+        'Accept': 'application/json',
+      },
+      params: {
+        'YOUR_ACCESS_TOKEN': yourAccessToken,
+      },
+      returnResponse: true,
+    );

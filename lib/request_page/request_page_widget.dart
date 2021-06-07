@@ -25,24 +25,36 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
           decoration: BoxDecoration(
             color: Color(0xFFEEEEEE),
           ),
-          child: FutureBuilder<dynamic>(
-            future: worldTimeAPICall(
-              area: 'Europe',
-              location: 'London',
-            ),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(child: CircularProgressIndicator());
-              }
-              final textWorldTimeAPIResponse = snapshot.data;
-              return Text(
-                getJsonField(textWorldTimeAPIResponse, r'.datetime').toString(),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              FutureBuilder<dynamic>(
+                future: worldTimeAPICall(
+                  area: 'Europe',
+                  location: 'London',
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  final textWorldTimeAPIResponse = snapshot.data;
+                  return Text(
+                    getJsonField(textWorldTimeAPIResponse, r'.datetime')
+                        .toString(),
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  );
+                },
+              ),
+              Text(
+                'Hello World',
                 style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Poppins',
                 ),
-              );
-            },
+              )
+            ],
           ),
         ),
       ),
