@@ -1,9 +1,11 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
 import '../help_page/help_page_widget.dart';
-import '../login_page/login_page_widget.dart';
+import '../login_page_copy/login_page_copy_widget.dart';
 import '../profil_page/profil_page_widget.dart';
 import '../settings_page/settings_page_widget.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,49 +45,37 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 10, 0, 25),
-                          child: Container(
-                            width: 120,
-                            height: 120,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.network(
-                              'https://picsum.photos/seed/483/600',
-                            ),
-                          ),
+                    Container(
+                      width: 90,
+                      height: 90,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.network(
+                        currentUserPhoto,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                      child: AutoSizeText(
+                        currentUserDisplayName,
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.title3.override(
+                          fontFamily: 'Poppins',
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                              child: Text(
-                                'Hello World',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                              child: Text(
-                                'Hello World',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: AutoSizeText(
+                        currentUserEmail,
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.subtitle1.override(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
                     ),
                     InkWell(
                       onTap: () async {
@@ -177,7 +167,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginPageWidget(),
+                            builder: (context) => LoginPageCopyWidget(),
                           ),
                           (r) => false,
                         );

@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'auth/firebase_user_provider.dart';
-import 'package:horaire_clinique/login_page/login_page_widget.dart';
+import 'package:horaire_clinique/login_page_copy/login_page_copy_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'home_page/home_page_widget.dart';
 import 'request_page/request_page_widget.dart';
@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
             )
           : currentUser.loggedIn
               ? NavBarPage()
-              : LoginPageWidget(),
+              : LoginPageCopyWidget(),
     );
   }
 }
