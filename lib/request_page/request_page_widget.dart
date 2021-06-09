@@ -57,8 +57,7 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                   }
                   final textGetCalendarEventsResponse = snapshot.data;
                   return Text(
-                    getJsonField(
-                            textGetCalendarEventsResponse, r'.nextPageToken')
+                    getJsonField(textGetCalendarEventsResponse, r'*')
                         .toString(),
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
