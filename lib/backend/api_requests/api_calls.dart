@@ -77,7 +77,7 @@ Future<dynamic> getCalendarEventsCall() => ApiManager.instance.makeApiCall(
       callType: ApiCallType.GET,
       headers: {
         'Authorization':
-            'Bearer ya29.a0AfH6SMBfMV6qtORmxHp5_q-tsVacT-njB-SoIU8_wLu4z0EiqmX-z9cYonXq-Vxn1v24NNl0-btPB2lAwcM1u4P9cnWjBVLbv3nDLiFwav5tyb9LiLmGMdguZAR8cZln2J1tLBU6HqgoPgrKy0Tdii9H0KmCbVcRVDboxkCULuG8FdrB5dH9e_VmjSyifnIDPLzNGaeIp5Ho4Y90xiimsC0g2-gWBMNUcN-VxLrq9ozHbIELXv2wos',
+            'Bearer ya29.a0AfH6SMDE3VQUgynnCr9gnhbYda9ZLZGoWEF7JeafyQ5niorvGVleJGiHTvoWNi4HvauElwel4unHPbvGATqvlR55rynb7NdRLMk-RWBVNQkv0wpONnejjQm9Wn4Jvt7Bsk9OTzwRLQvxHRbXs0O4HBJfgJ2P',
       },
       params: {},
       returnResponse: true,
