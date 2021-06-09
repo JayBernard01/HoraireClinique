@@ -69,3 +69,16 @@ Future<dynamic> calendarListListCall({
       },
       returnResponse: true,
     );
+
+Future<dynamic> getCalendarEventsCall() => ApiManager.instance.makeApiCall(
+      callName: 'GetCalendarEvents',
+      apiDomain: 'www.googleapis.com',
+      apiEndpoint: 'calendar/v3/calendars/jeremie.bernard01@gmail.com/events',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization':
+            'Bearer ya29.a0AfH6SMDE3VQUgynnCr9gnhbYda9ZLZGoWEF7JeafyQ5niorvGVleJGiHTvoWNi4HvauElwel4unHPbvGATqvlR55rynb7NdRLMk-RWBVNQkv0wpONnejjQm9Wn4Jvt7Bsk9OTzwRLQvxHRbXs0O4HBJfgJ2P',
+      },
+      params: {},
+      returnResponse: true,
+    );
