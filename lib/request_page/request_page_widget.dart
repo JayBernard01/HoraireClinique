@@ -49,41 +49,16 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                 },
               ),
               FutureBuilder<dynamic>(
-                future: calendarListListCall(
-                  yourApiKey: 'AIzaSyAz2tfSeS5JHTccLYXIZtV54EhtqIIDbCc',
-                  yourAccessToken:
-                      '577233090971-orjmf4su3ejesodbdaec0kk05es1nk40.apps.googleusercontent.com',
-                ),
+                future: getCalendarEventsCall(),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
                     return Center(child: CircularProgressIndicator());
                   }
-                  final textCalendarListListResponse = snapshot.data;
-                  return Text(
-                    getJsonField(textCalendarListListResponse, r'[0].summary')
-                        .toString(),
-                    style: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Poppins',
-                    ),
-                  );
-                },
-              ),
-              FutureBuilder<dynamic>(
-                future: calendarListListCall(
-                  yourApiKey: 'AIzaSyAz2tfSeS5JHTccLYXIZtV54EhtqIIDbCc',
-                  yourAccessToken:
-                      '577233090971-orjmf4su3ejesodbdaec0kk05es1nk40.apps.googleusercontent.com',
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  final textCalendarListListResponse = snapshot.data;
+                  final textGetCalendarEventsResponse = snapshot.data;
                   return Text(
                     getJsonField(
-                            textCalendarListListResponse, r'[0].error.code')
+                            textGetCalendarEventsResponse, r'.nextPageToken')
                         .toString(),
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
