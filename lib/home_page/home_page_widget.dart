@@ -2,9 +2,9 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../help_page/help_page_widget.dart';
-import '../login_page_copy/login_page_copy_widget.dart';
 import '../profil_page/profil_page_widget.dart';
 import '../settings_page/settings_page_widget.dart';
+import '../sign_up_pag/login_page_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -167,7 +167,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         await Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginPageCopyWidget(),
+                            builder: (context) => LoginPageWidget(),
                           ),
                           (r) => false,
                         );

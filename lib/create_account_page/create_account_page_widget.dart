@@ -1,31 +1,35 @@
 import '../auth/auth_util.dart';
-import '../create_account_page/create_account_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
+import '../sign_up_pag/login_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPageWidget extends StatefulWidget {
-  LoginPageWidget({Key key}) : super(key: key);
+class CreateAccountPageWidget extends StatefulWidget {
+  CreateAccountPageWidget({Key key}) : super(key: key);
 
   @override
-  _LoginPageWidgetState createState() => _LoginPageWidgetState();
+  _CreateAccountPageWidgetState createState() =>
+      _CreateAccountPageWidgetState();
 }
 
-class _LoginPageWidgetState extends State<LoginPageWidget> {
+class _CreateAccountPageWidgetState extends State<CreateAccountPageWidget> {
+  TextEditingController confirmPasswordTextController;
+  bool passwordVisibility2;
   TextEditingController emailTextController;
   TextEditingController passwordTextController;
-  bool passwordVisibility;
+  bool passwordVisibility1;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    confirmPasswordTextController = TextEditingController();
+    passwordVisibility2 = false;
     emailTextController = TextEditingController();
     passwordTextController = TextEditingController();
-    passwordVisibility = false;
+    passwordVisibility1 = false;
   }
 
   @override
@@ -126,7 +130,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             EdgeInsets.fromLTRB(20, 0, 20, 0),
                                         child: TextFormField(
                                           controller: passwordTextController,
-                                          obscureText: !passwordVisibility,
+                                          obscureText: !passwordVisibility1,
                                           decoration: InputDecoration(
                                             hintText: 'Password',
                                             hintStyle: GoogleFonts.getFont(
@@ -158,11 +162,79 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             ),
                                             suffixIcon: InkWell(
                                               onTap: () => setState(
-                                                () => passwordVisibility =
-                                                    !passwordVisibility,
+                                                () => passwordVisibility1 =
+                                                    !passwordVisibility1,
                                               ),
                                               child: Icon(
-                                                passwordVisibility
+                                                passwordVisibility1
+                                                    ? Icons.visibility_outlined
+                                                    : Icons
+                                                        .visibility_off_outlined,
+                                                size: 22,
+                                              ),
+                                            ),
+                                          ),
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF455A64),
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(4, 0, 4, 20),
+                                    child: Container(
+                                      width: 300,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFE0E0E0),
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                        child: TextFormField(
+                                          controller:
+                                              confirmPasswordTextController,
+                                          obscureText: !passwordVisibility2,
+                                          decoration: InputDecoration(
+                                            hintText: 'Confirm password',
+                                            hintStyle: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF455A64),
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(4.0),
+                                                topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(4.0),
+                                                topRight: Radius.circular(4.0),
+                                              ),
+                                            ),
+                                            suffixIcon: InkWell(
+                                              onTap: () => setState(
+                                                () => passwordVisibility2 =
+                                                    !passwordVisibility2,
+                                              ),
+                                              child: Icon(
+                                                passwordVisibility2
                                                     ? Icons.visibility_outlined
                                                     : Icons
                                                         .visibility_off_outlined,
@@ -183,7 +255,22 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        final user = await signInWithEmail(
+                                        if (passwordTextController.text !=
+                                            confirmPasswordTextController
+                                                .text) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                "Passwords don't match!",
+                                              ),
+                                            ),
+                                          );
+                                          return;
+                                        }
+
+                                        final user =
+                                            await createAccountWithEmail(
                                           context,
                                           emailTextController.text,
                                           passwordTextController.text,
@@ -192,16 +279,33 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           return;
                                         }
 
-                                        await Navigator.pushAndRemoveUntil(
+                                        await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => NavBarPage(
-                                                initialPage: 'HomePage'),
+                                            builder: (context) =>
+                                                LoginPageWidget(),
                                           ),
-                                          (r) => false,
+                                        );
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text('Account Created!'),
+                                              content: Text(
+                                                  'Your account as been created.'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
                                         );
                                       },
-                                      text: 'Sign in',
+                                      text: 'Create account',
                                       options: FFButtonOptions(
                                         width: 300,
                                         height: 50,
@@ -218,154 +322,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         borderRadius: 25,
                                       ),
                                     ),
-                                  ),
-                                  InkWell(
-                                    onTap: () async {
-                                      if (emailTextController.text.isEmpty) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Email required!',
-                                            ),
-                                          ),
-                                        );
-                                        return;
-                                      }
-                                      await resetPassword(
-                                        email: emailTextController.text,
-                                        context: context,
-                                      );
-                                    },
-                                    child: Text(
-                                      'Forgot your password? Resset here',
-                                      style: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                          child: InkWell(
-                                            onTap: () async {
-                                              await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      CreateAccountPageWidget(),
-                                                ),
-                                              );
-                                            },
-                                            child: Text(
-                                              'Don\'t have an account? Sign Up',
-                                              style: GoogleFonts.getFont(
-                                                'Open Sans',
-                                                color: Colors.black,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
                                   )
                                 ],
                               ),
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Align(
-                                  alignment: Alignment(0, 0),
-                                  child: Container(
-                                    width: 230,
-                                    height: 44,
-                                    child: Stack(
-                                      children: [
-                                        Align(
-                                          alignment: Alignment(0, 6.67),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsets.fromLTRB(0, 1, 0, 0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                final user =
-                                                    await signInWithGoogle(
-                                                        context);
-                                                if (user == null) {
-                                                  return;
-                                                }
-                                                await Navigator
-                                                    .pushAndRemoveUntil(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        NavBarPage(
-                                                            initialPage:
-                                                                'HomePage'),
-                                                  ),
-                                                  (r) => false,
-                                                );
-                                              },
-                                              text: 'Sign in with Google',
-                                              icon: Icon(
-                                                Icons.add,
-                                                color: Colors.transparent,
-                                                size: 20,
-                                              ),
-                                              options: FFButtonOptions(
-                                                width: 230,
-                                                height: 44,
-                                                color: Colors.white,
-                                                textStyle: GoogleFonts.getFont(
-                                                  'Roboto',
-                                                  color: Color(0xFF606060),
-                                                  fontSize: 17,
-                                                ),
-                                                elevation: 4,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 0,
-                                                ),
-                                                borderRadius: 12,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: Alignment(-0.83, 0),
-                                          child: Container(
-                                            width: 22,
-                                            height: 22,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.network(
-                                              'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
-                                              fit: BoxFit.contain,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
                             )
                           ],
                         ),
