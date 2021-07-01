@@ -33,7 +33,26 @@ class _AllChatPageWidgetState extends State<AllChatPageWidget> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: [],
+        actions: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            child: InkWell(
+              onTap: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChatPageWidget(),
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.create,
+                color: Colors.black,
+                size: 24,
+              ),
+            ),
+          )
+        ],
         centerTitle: true,
         elevation: 4,
       ),
