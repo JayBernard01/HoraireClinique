@@ -74,7 +74,8 @@ class FFChatManager {
     var chat = await queryChatsRecord(
             queryBuilder: (q) => q
                 .where('user_a', isEqualTo: users.first)
-                .where('user_b', isEqualTo: users.last),
+                .where('user_b', isEqualTo: users.last)
+                .where('users', arrayContains: currentUser),
             singleRecord: true)
         .first;
     // If chat already exists, cache and return it.

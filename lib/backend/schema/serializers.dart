@@ -1,12 +1,12 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:latlong/latlong.dart';
 
 import 'users_record.dart';
 import 'chats_record.dart';
 import 'chat_messages_record.dart';
+
+import 'index.dart';
+
+export 'index.dart';
 
 part 'serializers.g.dart';
 
@@ -92,10 +92,10 @@ Map<String, dynamic> serializedData(DocumentSnapshot doc) =>
 Map<String, dynamic> mapFromFirestore(Map<String, dynamic> data) =>
     data.map((key, value) {
       if (value is Timestamp) {
-        value = value.toDate();
+        value = (value as Timestamp).toDate();
       }
       if (value is GeoPoint) {
-        value = value.toLatLng();
+        value = (value as GeoPoint).toLatLng();
       }
       return MapEntry(key, value);
     });
@@ -103,7 +103,7 @@ Map<String, dynamic> mapFromFirestore(Map<String, dynamic> data) =>
 Map<String, dynamic> mapToFirestore(Map<String, dynamic> data) =>
     data.map((key, value) {
       if (value is LatLng) {
-        value = value.toGeoPoint();
+        value = (value as LatLng).toGeoPoint();
       }
       return MapEntry(key, value);
     });
@@ -114,4 +114,13 @@ extension GeoPointExtension on LatLng {
 
 extension LatLngExtension on GeoPoint {
   LatLng toLatLng() => LatLng(latitude, longitude);
+}
+
+DocumentReference toRef(String ref) => FirebaseFirestore.instance.doc(ref);
+
+T safeGet<T>(T Function() func) {
+  try {
+    return func();
+  } catch (_) {}
+  return null;
 }

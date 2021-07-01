@@ -52,9 +52,12 @@ class _AllChatPageWidgetState extends State<AllChatPageWidget> {
             List<ChatsRecord> listViewChatsRecordList = snapshot.data;
             // Customize what your widget looks like with no query results.
             if (snapshot.data.isEmpty) {
-              // return Container();
-              // For now, we'll just include some dummy data.
-              listViewChatsRecordList = createDummyChatsRecord(count: 4);
+              return Container(
+                height: 100,
+                child: Center(
+                  child: Text('No results.'),
+                ),
+              );
             }
             return Padding(
               padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
